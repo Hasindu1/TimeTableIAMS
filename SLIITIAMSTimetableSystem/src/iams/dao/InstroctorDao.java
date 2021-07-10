@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sun.imageio.spi.OutputStreamImageOutputStreamSpi;
 
@@ -14,7 +15,7 @@ public class InstroctorDao{
 
 	private String dbUrl = "jdbc:mysql://localhost:3306/sliitiams";
 	private String dbUname = "root";
-	private String dbPassword = "1234";
+	private String dbPassword = "root";
 	private String dbDriver = "com.mysql.jdbc.Driver";
 	
 	
@@ -79,6 +80,42 @@ public class InstroctorDao{
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+		return instroctorList;
+	}
+	/**
+	 * Get All Instructors names 
+	 * @return
+	 */
+
+	public List<Instroctor> getAllInstructorsName(){
+		List<Instroctor> instroctorList = new ArrayList<Instroctor>();
+		
+		loadDriver(dbDriver);
+		Connection con = getConnection();
+		
+		String sql = "SELECT lectures_instroctors.iname FROM lectures_instroctors";
+		try{
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()){
+				Instroctor instroctor = new Instroctor();
+				instroctor.setIname(result.getString(1));
+				
+				
+				instroctorList.add(instroctor);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return instroctorList;
 	}

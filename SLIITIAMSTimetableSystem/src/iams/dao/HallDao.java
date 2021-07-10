@@ -15,7 +15,7 @@ public class HallDao {
 
 	private String dbUrl = "jdbc:mysql://localhost:3306/sliitiams";
 	private String dbUname = "root";
-	private String dbPassword = "1234";
+	private String dbPassword = "root";
 	private String dbDriver = "com.mysql.jdbc.Driver";
 	
 	
@@ -85,6 +85,44 @@ public class HallDao {
 		}
 		return hallList;
 	}
+	/**
+	 * Get All Halls names and Ids 
+	 * @return
+	 */
+	
+	public ArrayList<Halls> getAllHallsNameAndId(){
+		ArrayList<Halls> hallList = new ArrayList<Halls>();
+		
+		loadDriver(dbDriver);
+		Connection con = getConnection();
+		
+		String sql = "SELECT halls.hallid,halls.hallname FROM halls";
+		try{
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()){
+				Halls halls = new Halls();
+				halls.setHallId(result.getString(1));
+				halls.setHallName(result.getString(2));
+				
+			
+				hallList.add(halls);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return hallList;
+	}
+	
 	
 	public void deleteHall(String id){
 		loadDriver(dbDriver);

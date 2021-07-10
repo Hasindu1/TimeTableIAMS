@@ -175,7 +175,7 @@ body {
 						<li class="nav-item"><a class="nav-link"
 							onclick="window.location='Home.jsp'"> Home </a></li>
 						<li class="nav-item"><a class="nav-link"
-							onclick="window.location='TimeTables.jsp'"> TimeTables </a></li>
+							onclick="window.location='ViewTimeTableServelet'"> TimeTables </a></li>
 						<li class="nav-item"><a class="nav-link"
 							onclick="window.location='EmployeeList.jsp'"> Employee </a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -279,7 +279,7 @@ body {
 
 					<%
 						BatchDao batch = new BatchDao();
-						ArrayList<Batch> batches = batch.getBatch();
+						ArrayList<Batch> batches = batch.getAllBatches();
 
 						for (Batch h : batches) {
 					%>

@@ -66,9 +66,9 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="TimeTable.jsp">
+							<a href="ViewTimeTableServelet">
 								<i class="la la-table"></i>
-								<p>Time Tables</p>
+								<p>TimeTables</p>
 							
 							</a>
 						</li>

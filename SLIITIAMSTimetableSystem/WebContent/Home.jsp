@@ -95,7 +95,7 @@ color: #293f54;
 							</a>
 						</li>
 							<li class="nav-item">
-							<a class="nav-link"  onclick="window.location='TimeTables.jsp'">
+							<a class="nav-link"  onclick="window.location='ViewTimeTableServelet'">
 								TimeTables
 							</a>
 						</li>

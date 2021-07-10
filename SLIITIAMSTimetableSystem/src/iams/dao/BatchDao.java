@@ -15,7 +15,7 @@ public class BatchDao {
 
 	private String dbUrl = "jdbc:mysql://localhost:3306/sliitiams";
 	private String dbUname = "root";
-	private String dbPassword = "1234";
+	private String dbPassword = "root";
 	private String dbDriver = "com.mysql.jdbc.Driver";
 	
 	
@@ -57,7 +57,7 @@ public class BatchDao {
 
 	}
 	
-	public ArrayList<Batch> getBatch(){
+	public ArrayList<Batch> getAllBatches(){
 		ArrayList<Batch> batchList = new ArrayList<Batch>();
 		
 		loadDriver(dbDriver);
@@ -74,8 +74,16 @@ public class BatchDao {
 				
 				batchList.add(batch);
 			}
-		}catch(Exception e){
+		}catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return batchList;
 	}

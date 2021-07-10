@@ -12,10 +12,10 @@ import iams.modal.LoginBean;
 
 public class LoginDao {
 	
-	
+
 	private String dbUrl = "jdbc:mysql://localhost:3306/sliitiams";
 	private String dbUname = "root";
-	private String dbPassword = "1234";
+	private String dbPassword = "root";
 	private String dbDriver = "com.mysql.jdbc.Driver";
 	
 	

@@ -11,16 +11,15 @@ import com.sun.imageio.spi.OutputStreamImageOutputStreamSpi;
 
 import iams.modal.Modules;;
 
-public class ModuleDao{
+public class ModuleDao {
 
 	private String dbUrl = "jdbc:mysql://localhost:3306/sliitiams";
 	private String dbUname = "root";
-	private String dbPassword = "1234";
+	private String dbPassword = "root";
 	private String dbDriver = "com.mysql.jdbc.Driver";
-	
-	
-	public void loadDriver(String dbDriver){
-		
+
+	public void loadDriver(String dbDriver) {
+
 		try {
 			Class.forName(dbDriver);
 		} catch (ClassNotFoundException e) {
@@ -28,101 +27,140 @@ public class ModuleDao{
 			e.printStackTrace();
 		}
 	}
-	
-	public Connection getConnection(){
+
+	public Connection getConnection() {
 		Connection con = null;
 		try {
-			con = DriverManager.getConnection(dbUrl,dbUname,dbPassword);
+			con = DriverManager.getConnection(dbUrl, dbUname, dbPassword);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return con;
 	}
-	
-	public void addModule(Modules module){
-	
+
+	public void addModule(Modules module) {
+
 		loadDriver(dbDriver);
 		Connection con = getConnection();
-	
-		String sql = "INSERT INTO modulelist VALUES('"+module.getModulecode()+"','"+module.getModuleName()+"','"+module.getAcademicYearSem()+"','"+module.getLectureIncharge()+"')";
-		
-		try{
+
+		String sql = "INSERT INTO modulelist VALUES('" + module.getModulecode() + "','" + module.getModuleName() + "','"
+				+ module.getAcademicYearSem() + "','" + module.getLectureIncharge() + "')";
+
+		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.execute();
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	public ArrayList<Modules> getModules(){
+
+	public ArrayList<Modules> getModules() {
 		ArrayList<Modules> moduleList = new ArrayList<Modules>();
-		
+
 		loadDriver(dbDriver);
 		Connection con = getConnection();
-		
+
 		String sql = "SELECT * FROM modulelist";
-		try{
+		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet result = statement.executeQuery();
-			
-			while(result.next()){
+
+			while (result.next()) {
 				Modules modules = new Modules();
 				modules.setModulecode(result.getString(1));
 				modules.setModuleName(result.getString(2));
 				modules.setAcademicYearSem(result.getString(3));
 				modules.setLectureIncharge(result.getString(4));
 				
+
 				moduleList.add(modules);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return moduleList;
 	}
-	
-	public void deleteModule(String id){
+
+	/**
+	 * Get All Modules codes and names
+	 * 
+	 * @return
+	 */
+
+	public ArrayList<Modules> getAllModulesCodeAndName() {
+		ArrayList<Modules> moduleList = new ArrayList<Modules>();
+
+		loadDriver(dbDriver);
+		Connection con = getConnection();
+
+		String sql = "SELECT modulelist.modulecode,modulelist.moduleName FROM modulelist";
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+				Modules modules = new Modules();
+				modules.setModulecode(result.getString(1));
+				modules.setModuleName(result.getString(2));
+
+				moduleList.add(modules);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return moduleList;
+	}
+
+	public void deleteModule(String id) {
 		loadDriver(dbDriver);
 		Connection con = getConnection();
 		System.out.println(id);
-		String sql = "DELETE FROM modulelist WHERE `modulecode` = '"+id+"'";
-		try{
+		String sql = "DELETE FROM modulelist WHERE `modulecode` = '" + id + "'";
+		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.executeUpdate();
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	public ArrayList<Modules> getModule(String id){
+
+	public ArrayList<Modules> getModule(String id) {
 		ArrayList<Modules> moduleList = new ArrayList<Modules>();
-		
+
 		loadDriver(dbDriver);
 		Connection con = getConnection();
-		
-		String sql = "SELECT * FROM modulelist WHERE `modulecode` = '"+id+"'";
-		try{
+
+		String sql = "SELECT * FROM modulelist WHERE `modulecode` = '" + id + "'";
+		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			ResultSet result = statement.executeQuery();
-			
-			while(result.next()){
+
+			while (result.next()) {
 				Modules modules = new Modules();
 				modules.setModulecode(result.getString(1));
 				modules.setModuleName(result.getString(2));
 				modules.setAcademicYearSem(result.getString(3));
 				modules.setLectureIncharge(result.getString(4));
-				
-			
+
 				moduleList.add(modules);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return moduleList;
 	}
-	
+
 }
