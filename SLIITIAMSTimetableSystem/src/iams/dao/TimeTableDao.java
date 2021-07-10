@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -109,35 +108,14 @@ public class TimeTableDao {
 
 			String sql = "SELECT timetable.id FROM timetable WHERE ((day = ?) AND ((instroctorName = ?)  OR (batchid = ? )OR (location = ?) )) AND ((startTime BETWEEN  ? and ?) OR\r\n"
 					+ "(endTime BETWEEN ? AND ?) OR (startTime <= ? AND endTime >= ?))";
-          
-//			String[] startTimeArr = timeTable.getStartTime().split("\\.");
-//			String newStartTimeHour = startTimeArr[0];
-//			newStartTime;
-//			if(startTimeArr[1].equals("00")) {
-//				newStartTimeHour= Integer.toString(((Integer.parseInt(startTimeArr[0]))-1));
-//				}
-			String newStartTime = timeTable.getStartTime().replace(".",":").replace("00","01").replace("30","31").concat(":00");
-			
-			String foramttedStartTime = TIMESTAMP_DATE.concat(
-					 newStartTime);
-		
-			System.out.println("FORAMTTED START STRING"  );
-			System.out.println(foramttedStartTime);
-//
-//			String[] endTimeArr = timeTable.getEndTime().split("\\.");
-			
-			
-			//String newEndTimeHour = endTimeArr[0];
-			//String newEndTime ;
-//			if(endTimeArr[1].equals("00")) {
-//			newEndTimeHour= Integer.toString(((Integer.parseInt(endTimeArr[0]))-1));
-//			}
-			String newEndTime = timeTable.getEndTime().replace(".",":").concat(":00");
-			String formattedEndTime = TIMESTAMP_DATE
-					.concat( newEndTime);
-			
-			System.out.println("FORAMTTED END STRING"  );
-			System.out.println(formattedEndTime);
+
+			String newStartTime = timeTable.getStartTime().replace(".", ":").replace("00", "01").replace("30", "31")
+					.concat(":00");
+
+			String foramttedStartTime = TIMESTAMP_DATE.concat(newStartTime);
+
+			String newEndTime = timeTable.getEndTime().replace(".", ":").concat(":00");
+			String formattedEndTime = TIMESTAMP_DATE.concat(newEndTime);
 
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
 			preparedStatement.setString(1, timeTable.getDay());
