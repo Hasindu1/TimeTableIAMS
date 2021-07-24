@@ -1,6 +1,6 @@
 # TimeTableIAMS-JSP-Servlet
 
-## Technology stack
+## Technology Stack
 
 ![JSP](https://img.shields.io/badge/Language-JSP-red)
 ![javaScript](https://img.shields.io/badge/Language-javaScript-red) 
