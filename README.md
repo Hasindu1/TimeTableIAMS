@@ -2,6 +2,7 @@
 
 ## Technology Stack
 
+![Java](https://img.shields.io/badge/Language-Java-red)
 ![JSP](https://img.shields.io/badge/Language-JSP-red)
 ![javaScript](https://img.shields.io/badge/Language-javaScript-red) 
 ![HTML5](https://img.shields.io/badge/Language-HTML5-red) 
