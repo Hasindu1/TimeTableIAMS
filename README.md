@@ -18,7 +18,7 @@
 * User input validation.
 * Database desiging and developemnt for the timetable and the availability.
 
- ## Contributed Application User Interfaces
+ ## Contributed Developments
  ### View Timetable
  
  <p align="left">
