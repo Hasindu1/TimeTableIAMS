@@ -18,32 +18,32 @@
 * User input validation.
 * Database desiging and developemnt for the timetable and the availability.
 
- ## Contributed application user interfaces
+ ## Contributed Application User Interfaces
  ### View Timetable
  
  <p align="left">
   <img src="../master/screenshots/view-time-table.PNG"/>
  </p>
  
- ### Timetable View error validations
+ ### Timetable View Error Validations
  
  <p align="left">
   <img src="../master/screenshots/view-time-table-error.PNG"/>
  </p>
  
-  ### Timetable Time allocation
+  ### Timetable Time Allocation
  
  <p align="left">
   <img src="../master/screenshots/save-time-table-validation-error.PNG"/>
  </p>
  
- ### Timetable Time alloction validations
+ ### Timetable Time Alloction Validations
  
  <p align="left">
   <img src="../master/screenshots/save-time-table-success.PNG"/>
  </p>
  
- ### Timetable Time allcation validations
+ ### Timetable Time Allcation Validations
  
  <p align="left">
   <img src="../master/screenshots/save-time-table-allocation-error.PNG"/>
